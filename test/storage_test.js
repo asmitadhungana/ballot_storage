@@ -9,7 +9,7 @@ const doDeployStorageContract = async () => {
   await storage.deployed();
 }
 
-describe("Storage", function () {
+describe("Contract: Storage", function () {
   beforeEach(async () => {
     await doDeployStorageContract();
   });

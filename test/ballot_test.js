@@ -1,3 +1,4 @@
+const { current } = require("@openzeppelin/test-helpers/src/balance");
 const { expect } = require("chai");
 const { ethers } = require("hardhat");
 
@@ -25,7 +26,7 @@ const doGiveRightsToVoters = async () => {
   await ballot.connect(deployer).giveRightToVote(voter2.address);
 }
 
-describe("Ballot", function () {
+describe("Contract: Ballot", function () {
 
   describe("Ballot: User Casts Vote Before Vote Ended", function () {
     beforeEach(async () => {
@@ -74,7 +75,7 @@ describe("Ballot", function () {
 
     it("Should revert if the voting period has ended", async function () {
       voteEndTime = (await ballot.voteEndTime()).toNumber();
-      startTime = (await ballot.startTime());
+      startTime = (await ballot.startTime()).toNumber();
 
       await ethers.provider.send("evm_setNextBlockTimestamp", [voteEndTime]);
 
